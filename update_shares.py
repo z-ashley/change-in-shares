@@ -1,7 +1,7 @@
 from openpyxl import load_workbook
 arkgWB = load_workbook(filename = 'arkg_holdings1.xlsx')
 arkgSheet = arkgWB.active
-# print(sheet["C"])
+
 sharesWB = load_workbook(filename = 'shareschange.xlsx')
 sharesSheet = sharesWB.active
 
