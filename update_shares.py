@@ -9,21 +9,25 @@ arkgSheet = arkgWB.active
 sharesWB = load_workbook(filename = 'shareschange.xlsx')
 sharesSheet = sharesWB.active
 
-
-sharesSheet.insert_cols(idx=4)
-sharesSheet["D1"] = arkgSheet.cell(row=2, column=1).value
+insertAtCol = 6
+sharesSheet.insert_cols(idx=insertAtCol)
+sharesSheet["F1"] = arkgSheet.cell(row=2, column=1).value
 
 counter = 2 
 while counter < arkgSheet.max_row:
     found = False
-    stockName = arkgSheet.cell(row=counter, column=3).value
-    for cell in sharesSheet['A']:
+    stockName = arkgSheet.cell(row=counter, column=4).value
+    for cell in sharesSheet['B']:
         if cell.value == stockName:
-            sharesSheet.cell(row=cell.row, column=4).value = arkgSheet.cell(row=counter, column=6).value
+            sharesSheet.cell(row=cell.row, column=insertAtCol).value = arkgSheet.cell(row=counter, column=6).value
             found = True
     # add new stock listing to the bottom of the list
     if not found:
-        sharesSheet.append({1 : stockName, 2 : arkgSheet.cell(row=counter, column = 4).value, 4:arkgSheet.cell(row=counter, column=6).value})
+        sharesSheet.insert_rows(idx=2)
+        sharesSheet.cell(row=2, column=1).value = stockName
+        sharesSheet.cell(row=2, column=2).value = arkgSheet.cell(row=counter, column = 4).value
+        sharesSheet.cell(row=2, column=insertAtCol).value = arkgSheet.cell(row=counter, column=6).value
+        # sharesSheet.append({1 : stockName, 2 : arkgSheet.cell(row=counter, column = 4).value, 4:arkgSheet.cell(row=counter, column=6).value})
     counter+=1
 
 
