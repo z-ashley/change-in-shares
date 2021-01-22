@@ -1,9 +1,11 @@
 from openpyxl import load_workbook
 
+exec(open("convert_csv.py").read())
+
 testWB = load_workbook(filename = 'tester.xlsx')
 testSheet = testWB.active
 
-arkgWB = load_workbook(filename = 'arkg_holdings2.xlsx')
+arkgWB = load_workbook(filename = 'arkg_holdings.xlsx') 
 arkgSheet = arkgWB.active
 
 sharesWB = load_workbook(filename = 'shareschange.xlsx')
@@ -11,8 +13,9 @@ sharesSheet = sharesWB.active
 
 
 sharesSheet.insert_cols(idx=3)
+sharesSheet["C1"] = arkgSheet.cell(row=2, column=1).value
 
-counter = 1 
+counter = 2 
 while counter < arkgSheet.max_row:
     found = False
     stockName = arkgSheet.cell(row=counter, column=3).value
