@@ -1,14 +1,12 @@
-# converts the downloaded csv to xlsx
+import pandas as pd 
+import numpy as np 
 
-import csv
-import openpyxl
 
-wb = openpyxl.Workbook()
-ws = wb.active
+# Reading the csv file 
+df_new = pd.read_csv('arkg_holdings.csv') 
 
-with open('arkg_holdings.csv') as f:
-    reader = csv.reader(f, delimiter=',')
-    for row in reader:
-        ws.append(row)
+# saving xlsx file 
+GFG = pd.ExcelWriter('arkg_holdings3.xlsx') 
+df_new.to_excel(GFG, index = False) 
 
-wb.save('arkg_holdings1.xlsx')
+GFG.save() 

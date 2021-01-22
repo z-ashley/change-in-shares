@@ -14,13 +14,17 @@ sharesSheet.insert_cols(idx=3)
 
 counter = 1 
 while counter < arkgSheet.max_row:
+    found = False
     stockName = arkgSheet.cell(row=counter, column=3).value
     for cell in sharesSheet['A']:
         if cell.value == stockName:
             sharesSheet.cell(row=cell.row, column=3).value = arkgSheet.cell(row=counter, column=6).value
+            found = True
+    # add new stock listing to the bottom of the list
+    if not found:
+        sharesSheet.append({1 : stockName, 2 : arkgSheet.cell(row=counter, column = 4).value, 3:arkgSheet.cell(row=counter, column=6).value})
     counter+=1
 
-del
 
 sharesWB.save(filename="shareschange.xlsx")
 
