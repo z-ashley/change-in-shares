@@ -2,8 +2,6 @@ from openpyxl import load_workbook
 
 exec(open("convert_csv.py").read())
 
-testWB = load_workbook(filename = 'tester.xlsx')
-testSheet = testWB.active
 
 arkgWB = load_workbook(filename = 'arkg_holdings.xlsx') 
 arkgSheet = arkgWB.active
