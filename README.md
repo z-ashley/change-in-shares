@@ -1,4 +1,4 @@
-# changeinsharescsv
+# Change in Shares
 -   to install before running:
     -   when installing python, be sure that you check the checkbox that says "environment variable" because python needs to be in your system path
     -   pip install pandas
